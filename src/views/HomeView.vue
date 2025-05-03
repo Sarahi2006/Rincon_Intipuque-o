@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import Navbar from '@/components/Navbar.vue'
-import Footer from '@/components/Footer.vue'
+import Navbar from '@/components/ui/Navbar.vue'
+import Footer from '@/components/ui/Footer.vue'
 import Hero from '@/components/Hero.vue'
-import MenuProducts from '@/components/MenuProducts.vue'
+import MenuProducts from '@/components/Layout/MenuProducts.vue'
 </script>
 
 <template>

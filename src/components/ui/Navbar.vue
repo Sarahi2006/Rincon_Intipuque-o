@@ -79,3 +79,6 @@ const logout = () => {
   </header>
 </template>
 
+<style scoped>
+
+</style>

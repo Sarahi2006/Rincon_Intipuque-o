@@ -17,7 +17,7 @@
 
 
 <template>
-    <section class="flex flex-col justify-center items-center py-10 px-6 bg-white text-gray-800">
+  <section class="flex flex-col justify-center items-center py-10 px-6 bg-white text-gray-800">
       <img src="/src/assets/img/logo.png" alt="Logo del Restaurante Rincón Intipuqueño" class="w-64 h-64 object-cover rounded-full">
 
       <h2 class="text-3xl font-bold text-center my-6">Sobre Nosotros</h2>

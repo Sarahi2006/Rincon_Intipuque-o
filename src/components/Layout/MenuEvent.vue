@@ -9,7 +9,6 @@ const events = ref<EventInterface[]>([])
 onMounted(async () => {
   events.value = await getEvents()
 })
-
 </script>
 
 <template>

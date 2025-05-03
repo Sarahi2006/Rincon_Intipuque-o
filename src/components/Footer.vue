@@ -16,10 +16,10 @@
         <div>
           <h4 class="font-bold mb-4">Síguenos en:</h4>
           <div class="flex space-x-6 border-t border-gray-200 pt-4">
-            <a href="https://facebook.com" aria-label="Facebook" target="blank"><img src="../../public/img/facebook.png" alt="Facebook" width="40"></a>
-            <a href="https://instagram.com" aria-label="Instagram" target="blank"><img src="../../public/img/instagram.png" alt="Instagram" width="40"></a>
-            <a href="https://wa.me" aria-label="WhatsApp" target="blank"><img src="../../public/img/whatsapp.png" alt="WhatsApp" width="40"></a>
-            <a href="https://ticktok.com" aria-label="TikTok" target="blank"><img src="../../public/img/tiktok.png" alt="TikTok" width="40"></a>
+            <a href="https://facebook.com" aria-label="Facebook" target="blank"><img src="../assets/img/facebook.png" alt="Facebook" width="40"></a>
+            <a href="https://instagram.com" aria-label="Instagram" target="blank"><img src="../assets/img/instagram.png" alt="Instagram" width="40"></a>
+            <a href="https://wa.me" aria-label="WhatsApp" target="blank"><img src="../assets/img/whatsapp.png" alt="WhatsApp" width="40"></a>
+            <a href="https://ticktok.com" aria-label="TikTok" target="blank"><img src="../assets/img/tiktok.png" alt="TikTok" width="40"></a>
           </div>
         </div>
       </div>

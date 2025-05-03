@@ -17,7 +17,7 @@ const props = defineProps({
       <!-- Logo y Título -->
       <div class="flex items-center">
         <!-- Logo del restaurante -->
-        <img src="../../public/img/logo.jpeg" alt="Logo del Restaurante Rincón Intipuqueño" class="w-24 h-16 object-cover rounded-full ">
+        <img src="../assets/img/logo.jpeg" alt="Logo del Restaurante Rincón Intipuqueño" class="w-24 h-16 object-cover rounded-full ">
         <h1 class="text-3xl font-bold ml-4 text-xs sm:text-base md:text-lg lg:text-xl xl:text-2xl">{{ props.title }}</h1>
       </div>
       <!-- Navegación -->

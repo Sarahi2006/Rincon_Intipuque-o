@@ -1,0 +1,46 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Pupusas",
+      "description": "Deliciosas pupusas de queso y chicharrón con curtido.",
+      "img": "/src/assets/img/img4.jpeg",
+      "price": 2.00
+    },
+    {
+      "id": 2,
+      "name": "Sopa de Res",
+      "description": "Caldo tradicional con vegetales, carne de res y yuca.",
+      "img": "/src/assets/img/img2.jpeg",
+      "price": 5.50
+    },
+    {
+      "id": 3,
+      "name": "Tamales de elote",
+      "description": "Tamales de elote con crema",
+      "img": "/src/assets/img/53.jpg",
+      "price": 2.50
+    },
+    {
+      "id": 4,
+      "name": "Elotes locos",
+      "description": "Deliciosos elotes locos con queso y salsas.",
+      "img": "/src/assets/img/img4.jpeg",
+      "price": 2.00
+    },
+    {
+      "id": 5,
+      "name": "Pastelitos de pollo",
+      "description": "Deliciosas pastelitos de pollo con salsa de tomate.",
+      "img": "/src/assets/img/926.jpg",
+      "price": 3.00
+    },
+    {
+      "id": 6,
+      "name": "Empanadas",
+      "description": "Empanadas de platano y cubirtas de axucar",
+      "img": "/src/assets/img/84.jpg",
+      "price": 1.50
+    }
+  ]
+}

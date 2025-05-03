@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CardProduct from '@/components/CardProduct.vue'
+import CardProduct from '@/components/ui/CardProduct.vue'
 import type { Plate } from '@/api/plate.interface.ts'
 import { getPlates } from '@/api/Plates.ts'
 import { onMounted, ref } from 'vue'

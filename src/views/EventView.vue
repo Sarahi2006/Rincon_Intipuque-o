@@ -1,14 +1,18 @@
 <script setup lang="ts">
-import Navbar from '@/components/Navbar.vue'
-import Footer from '@/components/Footer.vue'
+import Navbar from '@/components/ui/Navbar.vue'
+import Footer from '@/components/ui/Footer.vue'
+import MenuEvent from '@/components/Layout/MenuEvent.vue'
 </script>
 
 <template>
-  <Navbar title="Eventos Especiales"/>
-  <main>
+  <div class="flex flex-col min-h-screen">
+    <Navbar title="Eventos Especiales"/>
+    <main class="flex-1">
+      <MenuEvent/>
+    </main>
+    <Footer/>
+  </div>
 
-  </main>
-  <Footer/>
 </template>
 
 <style scoped>

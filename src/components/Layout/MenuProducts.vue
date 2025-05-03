@@ -20,7 +20,6 @@ onMounted(async () => {
     <div class="grid auto-cols-1 gap-4 xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
       <div v-for="plate in plates" :key="plate.id" >
         <ProductCard :title="plate.name" :price="plate.price" :description="plate.description" :img="plate.img"/>
-        <CardProduct :title="plate.name" :price="plate.price" :description="plate.description" :img="plate.img"/>
       </div>
     </div>
   </section>

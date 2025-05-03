@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import CardProduct from '@/components/CardProduct.vue'
-import type { Plate } from '@/api/plate.interface.ts'
+import ProductCard from '@/components/ui/ProductCard.vue'
+import type { Plate } from '@/api/interface/plate.interface.ts'
 import { getPlates } from '@/api/Plates.ts'
 import { onMounted, ref } from 'vue'
 
@@ -19,7 +19,7 @@ onMounted(async () => {
 
     <div class="grid auto-cols-1 gap-4 xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
       <div v-for="plate in plates" :key="plate.id" >
-        <CardProduct :title="plate.name" :price="plate.price" :description="plate.description" :img="plate.img"/>
+        <ProductCard :title="plate.name" :price="plate.price" :description="plate.description" :img="plate.img"/>
       </div>
     </div>
   </section>

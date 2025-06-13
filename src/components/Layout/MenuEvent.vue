@@ -15,7 +15,13 @@ onMounted(async () => {
   <section class="container mx-auto py-16 min-h-[calc(100vh-4rem)]">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       <div v-for="event in events" :key="event.id">
-        <EventCard :title="event.title" :description="event.description" :time="event.time" :date="event.date" :img="event.image" />
+        <EventCard
+          :title="event.title"
+          :description="event.description"
+          :time="event.time"
+          :date="event.date"
+          :img="event.image"
+        />
       </div>
     </div>
   </section>

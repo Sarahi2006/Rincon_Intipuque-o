@@ -6,15 +6,12 @@ import MenuEvent from '@/components/Layout/MenuEvent.vue'
 
 <template>
   <div class="flex flex-col min-h-screen">
-    <Navbar title="Eventos Especiales"/>
+    <Navbar title="Eventos Especiales" />
     <main class="flex-1">
-      <MenuEvent/>
+      <MenuEvent />
     </main>
-    <Footer/>
+    <Footer />
   </div>
-
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -12,6 +12,4 @@ import AboutUs from '@/components/AboutUs.vue'
   <Footer />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

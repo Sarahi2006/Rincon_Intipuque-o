@@ -7,12 +7,11 @@ import MenuProducts from '@/components/Layout/MenuProducts.vue'
 
 <template>
   <div class="flex flex-col min-h-screen">
-    <Navbar title="RINCÓN INTIPUQUEÑO"/>
+    <Navbar title="RINCÓN INTIPUQUEÑO" />
     <main class="flex-1">
-      <Hero/>
-      <MenuProducts/>
+      <Hero />
+      <MenuProducts />
     </main>
-    <Footer/>
+    <Footer />
   </div>
-
 </template>

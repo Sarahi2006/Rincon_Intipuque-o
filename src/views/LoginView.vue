@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import Footer from '@/components/ui/Footer.vue'
 import { login } from '@/api/login.ts'
@@ -49,7 +49,7 @@ const handleSubmit = async () => {
 
       console.log(response)
 
-      if (response.ok) {
+      if (response.success) {
         router.push('/')
       } else {
         errors.value.password = 'La contraseña no cumple con los requisitos de seguridad'

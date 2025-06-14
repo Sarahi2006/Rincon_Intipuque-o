@@ -4,6 +4,7 @@ import EventView from '../views/EventView.vue'
 import AboutView from '@/views/AboutView.vue'
 import ServicesView from '@/views/ServicesView.vue'
 import AboutUs from '@/components/AboutUs.vue'
+import Admin from '@/views/Admin.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -53,6 +54,11 @@ const router = createRouter({
       name: 'pedidos',
       component: () => import('@/views/PedidosView.vue'),
     },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: Admin,
+    }
   ],
 })
 

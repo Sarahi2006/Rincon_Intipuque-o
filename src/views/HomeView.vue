@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Navbar from '@/components/ui/Navbar.vue'
+import AppNavbar from '@/components/ui/AppNavbar.vue'
 import Footer from '@/components/ui/Footer.vue'
 import Hero from '@/components/Hero.vue'
 import MenuProducts from '@/components/Layout/MenuProducts.vue'
@@ -7,7 +7,7 @@ import MenuProducts from '@/components/Layout/MenuProducts.vue'
 
 <template>
   <div class="flex flex-col min-h-screen">
-    <Navbar title="RINCÓN INTIPUQUEÑO" />
+    <AppNavbar title="RINCÓN INTIPUQUEÑO" />
     <main class="flex-1">
       <Hero />
       <MenuProducts />

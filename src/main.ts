@@ -4,11 +4,21 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
+import { useCartStore } from '@/stores/cartStore'
 
 const app = createApp(App)
-app.use(createPinia)
+const pinia = createPinia()
+
+app.use(pinia)
 app.use(router)
 
-// Redirigir al login si no está autenticado al cargar la app
+const cartStore = useCartStore()
+cartStore.loadFromLocalStorage()
+
+cartStore.$subscribe((mutation, state) => {
+  localStorage.setItem('cart', JSON.stringify(state.items))
+})
+
 router.push('/login')
+
 app.mount('#app')

@@ -4,6 +4,7 @@ import EventView from '../views/EventView.vue'
 import AboutView from '@/views/AboutView.vue'
 import ServicesView from '@/views/ServicesView.vue'
 import AboutUs from '@/components/AboutUs.vue'
+import CartView from '@/views/CartView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,6 +37,12 @@ const router = createRouter({
       path: '/about-us',
       name: 'aboutUs',
       component: AboutUs,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: CartView,
       meta: { requiresAuth: true },
     },
     {

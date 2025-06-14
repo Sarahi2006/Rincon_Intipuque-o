@@ -2,19 +2,24 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import Navbar from '@/components/ui/Navbar.vue'
+import { register } from '@/api/register'
+import { useUserStore } from '@/userStore'
 
 const router = useRouter()
+const userStore = useUserStore()
 
 // Estados del formulario
 const formData = ref({
-  nombre: '',
+  name: '',
+  lastname: '',
   email: '',
   password: '',
   confirmPassword: '',
 })
 
 const errors = ref({
-  nombre: '',
+  name: '',
+  lastname: '',
   email: '',
   password: '',
   confirmPassword: '',
@@ -23,15 +28,23 @@ const errors = ref({
 // Estados para mostrar/ocultar contraseñas
 const showPassword = ref(false)
 const showConfirmPassword = ref(false)
+const isLoading = ref(false)
 
 const validateForm = () => {
   let isValid = true
 
-  if (!formData.value.nombre.trim()) {
-    errors.value.nombre = 'El nombre es requerido'
+  if (!formData.value.name.trim()) {
+    errors.value.name = 'El nombre es requerido'
     isValid = false
   } else {
-    errors.value.nombre = ''
+    errors.value.name = ''
+  }
+
+  if (!formData.value.lastname.trim()) {
+    errors.value.lastname = 'El apellido es requerido'
+    isValid = false
+  } else {
+    errors.value.lastname = ''
   }
 
   if (!formData.value.email.includes('@')) {
@@ -58,10 +71,29 @@ const validateForm = () => {
   return isValid
 }
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   if (validateForm()) {
-    console.log('Formulario válido:', formData.value)
-    router.push('/')
+    try {
+      isLoading.value = true
+      const response = await register(
+        formData.value.name,
+        formData.value.lastname,
+        formData.value.email,
+        formData.value.password
+      )
+
+      if (response.success) {
+        await userStore.getProfile()
+        router.push('/login')
+      } else {
+        errors.value.email = 'Error al registrar el usuario'
+      }
+    } catch (error) {
+      console.error('Error en el registro:', error)
+      errors.value.email = 'Error al registrar el usuario'
+    } finally {
+      isLoading.value = false
+    }
   }
 }
 </script>
@@ -78,25 +110,35 @@ const handleSubmit = () => {
         <div class="rounded-md shadow-sm space-y-4">
           <!-- Campo Nombre -->
           <div>
-            <label for="nombre" class="block text-sm font-medium text-gray-700"
-              >Nombre completo</label
-            >
+            <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
             <input
-              id="nombre"
-              v-model="formData.nombre"
+              id="name"
+              v-model="formData.name"
               type="text"
               required
               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              :class="{ 'border-red-500': errors.nombre }"
+              :class="{ 'border-red-500': errors.name }"
             />
-            <p v-if="errors.nombre" class="mt-1 text-sm text-red-600">{{ errors.nombre }}</p>
+            <p v-if="errors.name" class="mt-1 text-sm text-red-600">{{ errors.name }}</p>
+          </div>
+
+          <!-- Campo Apellido -->
+          <div>
+            <label for="lastname" class="block text-sm font-medium text-gray-700">Apellido</label>
+            <input
+              id="lastname"
+              v-model="formData.lastname"
+              type="text"
+              required
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              :class="{ 'border-red-500': errors.lastname }"
+            />
+            <p v-if="errors.lastname" class="mt-1 text-sm text-red-600">{{ errors.lastname }}</p>
           </div>
 
           <!-- Campo Email -->
           <div>
-            <label for="email" class="block text-sm font-medium text-gray-700"
-              >Correo electrónico</label
-            >
+            <label for="email" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
             <input
               id="email"
               v-model="formData.email"
@@ -247,8 +289,9 @@ const handleSubmit = () => {
           <button
             type="submit"
             class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            :disabled="isLoading"
           >
-            Registrarse
+            {{ isLoading ? 'Registrando...' : 'Registrarse' }}
           </button>
         </div>
       </form>

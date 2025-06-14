@@ -4,6 +4,7 @@ import type { CartItem } from '@/api/interface/cart.interface'
 export const useCartStore = defineStore('cart', {
   state: () => ({
     items: [] as CartItem[],
+    userId: null as string | null,
   }),
   getters: {
     totalQuantity: (state) =>
@@ -20,6 +21,12 @@ export const useCartStore = defineStore('cart', {
         this.items.push({ product, quantity: 1 })
       }
     },
+
+    setUserId(id: string | null) {
+      this.userId = id
+    },
+
+
     removeItem(productId: string) {
       this.items = this.items.filter(item => item.product._id !== productId)
     },
@@ -45,8 +52,10 @@ export const useCartStore = defineStore('cart', {
       }
     },
     loadFromLocalStorage() {
+      if (!this.userId) return
       try {
-        this.items = JSON.parse(localStorage.getItem('cart') || '[]')
+        const stored = localStorage.getItem(`cart_${this.userId}`)
+        this.items = stored ? JSON.parse(stored) : []
       } catch {
         this.items = []
       }

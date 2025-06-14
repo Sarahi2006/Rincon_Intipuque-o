@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import AppNavbar from '@/components/ui/AppNavbar.vue'
 import Footer from '@/components/ui/Footer.vue'
+import { login } from '@/api/login.ts'
+import { useCartStore } from '@/stores/cartStore'
 
 const router = useRouter()
 
@@ -20,33 +21,6 @@ const errors = ref({
 // Estado para mostrar/ocultar contraseña
 const showPassword = ref(false)
 
-// Validaciones de fortaleza de contraseña
-const passwordValidations = ref({
-  length: { isValid: false, message: 'Mínimo 8 caracteres' },
-  uppercase: { isValid: false, message: 'Al menos una mayúscula' },
-  number: { isValid: false, message: 'Al menos un número' },
-  specialChar: { isValid: false, message: 'Al menos un carácter especial' },
-})
-
-// Comprobar fortaleza de contraseña en tiempo real
-const checkPasswordStrength = () => {
-  const pass = formData.value.password
-
-  passwordValidations.value.length.isValid = pass.length >= 8
-  passwordValidations.value.uppercase.isValid = /[A-Z]/.test(pass)
-  passwordValidations.value.number.isValid = /[0-9]/.test(pass)
-  passwordValidations.value.specialChar.isValid = /[!@#$%^&*(),.?":{}|<>]/.test(pass)
-}
-
-// Función para validar si la contraseña cumple todos los requisitos
-const isPasswordValid = (): boolean => {
-  return (
-    passwordValidations.value.length.isValid &&
-    passwordValidations.value.uppercase.isValid &&
-    passwordValidations.value.number.isValid &&
-    passwordValidations.value.specialChar.isValid
-  )
-}
 
 const validateForm = () => {
   let isValid = true
@@ -65,36 +39,33 @@ const validateForm = () => {
   if (!formData.value.password) {
     errors.value.password = 'La contraseña es requerida'
     isValid = false
-  } else {
-    checkPasswordStrength() // Actualizar estado de validaciones
-
-    if (!isPasswordValid()) {
-      errors.value.password = 'La contraseña no cumple con los requisitos de seguridad'
-      isValid = false
-    }
   }
-
   return isValid
 }
 
 const handleSubmit = async () => {
   if (validateForm()) {
     try {
-      // Aquí normalmente harías una llamada a tu API de autenticación
-      // const response = await authService.login(formData.value.email, formData.value.password)
+      const response = await login(formData.value.email, formData.value.password)
 
-      // Simulamos autenticación exitosa solo si la contraseña es válida
-      if (isPasswordValid()) {
-        localStorage.setItem('isAuthenticated', 'true')
-        localStorage.setItem('userEmail', formData.value.email)
+      if (response.ok) {
+        const userId = response.data.data._id
 
-        // Redirigir al home
+        // 1. Guardar userId en localStorage
+        localStorage.setItem('userId', userId)
+
+        // 2. Configurar el carrito con ese userId
+        const cartStore = useCartStore()
+        cartStore.setUserId(userId)
+        cartStore.loadFromLocalStorage()
+
+
         router.push('/')
       } else {
         errors.value.password = 'La contraseña no cumple con los requisitos de seguridad'
       }
     } catch (error) {
-      // Manejo de errores (credenciales incorrectas, etc.)
+      console.log(error)
       errors.value.password = 'Credenciales incorrectas. Por favor, intente nuevamente.'
     }
   }
@@ -103,16 +74,6 @@ const handleSubmit = async () => {
 const goToRegister = () => {
   router.push('/register')
 }
-
-// Computed para deshabilitar el botón si el formulario no es válido
-const isFormValid = computed(() => {
-  return (
-    formData.value.email &&
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.value.email) &&
-    formData.value.password &&
-    isPasswordValid()
-  )
-})
 </script>
 
 <template>
@@ -148,12 +109,10 @@ const isFormValid = computed(() => {
             <input
               id="password"
               v-model="formData.password"
-              @input="checkPasswordStrength"
               :type="showPassword ? 'text' : 'password'"
               required
               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               :class="{ 'border-red-500': errors.password }"
-              @focus="checkPasswordStrength"
             />
             <button
               type="button"
@@ -199,25 +158,6 @@ const isFormValid = computed(() => {
 
             <!-- Mensaje de error -->
             <p v-if="errors.password" class="mt-1 text-sm text-red-600">{{ errors.password }}</p>
-
-            <!-- Indicadores de fortaleza de contraseña -->
-            <div class="mt-2 text-xs text-gray-600" v-if="formData.password">
-              <p>Seguridad de la contraseña:</p>
-              <ul class="list-disc list-inside">
-                <li :class="{ 'text-green-500': passwordValidations.length.isValid }">
-                  {{ passwordValidations.length.message }}
-                </li>
-                <li :class="{ 'text-green-500': passwordValidations.uppercase.isValid }">
-                  {{ passwordValidations.uppercase.message }}
-                </li>
-                <li :class="{ 'text-green-500': passwordValidations.number.isValid }">
-                  {{ passwordValidations.number.message }}
-                </li>
-                <li :class="{ 'text-green-500': passwordValidations.specialChar.isValid }">
-                  {{ passwordValidations.specialChar.message }}
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
 
@@ -243,8 +183,6 @@ const isFormValid = computed(() => {
           <button
             type="submit"
             class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            :class="{ 'opacity-50 cursor-not-allowed': !isFormValid }"
-            :disabled="!isFormValid"
           >
             Iniciar Sesión
           </button>

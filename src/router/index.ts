@@ -12,48 +12,42 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      meta: { requiresAuth: true }, // Protege esta ruta
     },
     {
       path: '/event',
       name: 'event',
       component: EventView,
-      meta: { requiresAuth: true },
     },
     {
       path: '/about',
       name: 'about',
       component: AboutView,
-      meta: { requiresAuth: true },
     },
     {
       path: '/services',
       name: 'services',
       component: ServicesView,
-      meta: { requiresAuth: true },
     },
     {
       path: '/about-us',
       name: 'aboutUs',
       component: AboutUs,
-      meta: { requiresAuth: true },
     },
     {
       path: '/register',
       name: 'register',
       component: () => import('@/views/RegisterView.vue'),
-      meta: { requiresAuth: false },
     },
     {
       path: '/login',
       name: 'login',
       component: () => import('@/views/LoginView.vue'),
-      meta: { requiresAuth: false },
     },
   ],
 })
 
 // Guardia de navegación
+/*
 router.beforeEach((to, from, next) => {
   const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true'
 
@@ -65,5 +59,5 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
-
+*/
 export default router

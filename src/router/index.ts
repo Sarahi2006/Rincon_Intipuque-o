@@ -43,21 +43,17 @@ const router = createRouter({
       name: 'login',
       component: () => import('@/views/LoginView.vue'),
     },
+    {
+      path: '/clientes',
+      name: 'clientes',
+      component: () => import('@/views/ClientesView.vue'),
+    },
+    {
+      path: '/pedidos',
+      name: 'pedidos',
+      component: () => import('@/views/PedidosView.vue'),
+    },
   ],
 })
 
-// Guardia de navegación
-/*
-router.beforeEach((to, from, next) => {
-  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true'
-
-  if (to.meta.requiresAuth && !isAuthenticated) {
-    next('/login')
-  } else if ((to.path === '/login' || to.path === '/register') && isAuthenticated) {
-    next('/')
-  } else {
-    next()
-  }
-})
-*/
 export default router

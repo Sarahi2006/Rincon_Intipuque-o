@@ -6,9 +6,9 @@ export interface CartItem {
 }
 
 export interface BasicPayment {
-  orderNumber: string  // número de orden generado automáticamente
+  orderNumber: string
   customerName: string
-  items: CartItem[]
+  items: { _id: string | number; quantity: number }[]
   subTotal: number
   total: number
 }

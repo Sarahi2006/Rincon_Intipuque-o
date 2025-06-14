@@ -31,12 +31,16 @@ function closeModal() {
   showPaymentModal.value = false
 }
 
+
 async function handlePayment(customerName: string) {
-  const orderNumber = `ORD-${Date.now()}` // Generar un número de orden/
+  const orderNumber = `ORD-${Date.now()}`
   const paymentData = {
     orderNumber,
     customerName,
-    items: cartStore.items,
+    items: cartStore.items.map(item => ({
+      _id: item.product._id,
+      quantity: item.quantity,
+    })),
     subTotal: total.value,
     total: total.value,
   }
@@ -46,11 +50,8 @@ async function handlePayment(customerName: string) {
   try {
     const result = await createSale(paymentData)
     console.log('Respuesta backend:', result)
-
-    cartStore.clearCart() // Limpiar el carrito correctamente
-
+    cartStore.clearCart()
     alert('Venta realizada con éxito!')
-
   } catch (error) {
     console.error('Error al realizar la venta:', error)
     alert('Error al realizar la venta.')

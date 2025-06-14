@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import AppNavbar from '@/components/ui/AppNavbar.vue'
+import Navbar from '@/components/ui/Navbar.vue'
 
 const router = useRouter()
 

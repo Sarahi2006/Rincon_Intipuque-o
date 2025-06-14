@@ -5,7 +5,7 @@ import { RouterLink } from 'vue-router'
 <template>
   <section class="relative min-h-[calc(100vh-4rem)] flex items-center">
     <img
-      src="/img/3533.jpg"
+      src="/src/assets/img/3533.jpg"
       alt="Platillo típico"
       class="absolute inset-0 w-full h-full object-cover"
     />

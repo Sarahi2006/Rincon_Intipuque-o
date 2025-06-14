@@ -6,7 +6,7 @@
       "date": "14 de Febrero, 2024",
       "time": "7:00 PM",
       "description": "Celebra el Día de San Valentín con una cena especial en nuestro restaurante. Menú gourmet, música en vivo y un ambiente romántico te esperan.",
-      "image": "/img/img5.jpeg"
+      "image": "/src/assets/img/img5.jpeg"
     },
     {
       "id": 2,
@@ -14,7 +14,7 @@
       "date": "20 de Febrero, 2024",
       "time": "6:00 PM",
       "description": "Únete a nosotros en la gran inauguración de nuestro restaurante. Habrá degustaciones, bebidas de cortesía y sorpresas especiales.",
-      "image": "/img/img6.png"
+      "image": "/src/assets/img/img6.png"
     },
     {
       "id": 3,
@@ -22,7 +22,7 @@
       "date": "25 de Febrero, 2024",
       "time": "8:00 PM",
       "description": "Diviértete con nuestra noche de karaoke. Canta tus canciones favoritas, disfruta de bebidas especiales y gana premios.",
-      "image": "/img/img7.jpeg"
+      "image": "/src/assets/img/img7.jpeg"
     }
   ]
 }

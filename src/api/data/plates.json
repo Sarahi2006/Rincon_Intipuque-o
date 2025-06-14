@@ -1,45 +1,45 @@
 {
   "data": [
     {
-      "_id": 1,
+      "id": 1,
       "name": "Pupusas",
       "description": "Deliciosas pupusas de queso y chicharrón con curtido.",
-      "image": "/img/pupusas.jpeg",
+      "img": "/src/assets/img/img4.jpeg",
       "price": 2.0
     },
     {
-      "_id": 2,
+      "id": 2,
       "name": "Sopa de Res",
       "description": "Caldo tradicional con vegetales, carne de res y yuca.",
-      "image": "/img/sopaRes.jpeg",
+      "img": "/src/assets/img/img2.jpeg",
       "price": 5.5
     },
     {
-      "_id": 3,
+      "id": 3,
       "name": "Tamales de elote",
       "description": "Tamales de elote con crema",
-      "image": "/img/tamales.jpg",
+      "img": "/src/assets/img/53.jpg",
       "price": 2.5
     },
     {
-      "_id": 4,
+      "id": 4,
       "name": "Elotes locos",
       "description": "Deliciosos elotes locos con queso y salsas.",
-      "image": "/img/elotesLocos.png",
+      "img": "/src/assets/img/img4.jpeg",
       "price": 2.0
     },
     {
-      "_id": 5,
+      "id": 5,
       "name": "Pastelitos de pollo",
       "description": "Deliciosas pastelitos de pollo con salsa de tomate.",
-      "image": "/img/pastelitosPollo.jpg",
+      "img": "/src/assets/img/926.jpg",
       "price": 3.0
     },
     {
-      "_id": 6,
+      "id": 6,
       "name": "Empanadas",
       "description": "Empanadas de platano y cubiertas de azucar",
-      "image": "/img/empanadas.jpg",
+      "img": "/src/assets/img/84.jpg",
       "price": 1.5
     }
   ]

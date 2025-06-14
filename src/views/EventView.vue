@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import AppNavbar from '@/components/ui/AppNavbar.vue'
+import Navbar from '@/components/ui/Navbar.vue'
 import Footer from '@/components/ui/Footer.vue'
 import MenuEvent from '@/components/Layout/MenuEvent.vue'
 </script>
 
 <template>
   <div class="flex flex-col min-h-screen">
-    <AppNavbar title="Eventos Especiales" />
+    <Navbar title="Eventos Especiales" />
     <main class="flex-1">
       <MenuEvent />
     </main>

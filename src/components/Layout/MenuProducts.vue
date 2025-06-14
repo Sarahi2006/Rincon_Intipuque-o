@@ -1,32 +1,34 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import ProductCard from '@/components/ui/ProductCard.vue'
-import type { Plate } from '@/api/interface/plate.interface.ts'
-import { getPlates } from '@/api/Plates.ts'
-import { onMounted, ref } from 'vue'
+import { getPlates } from '@/api/Plates'
+import type { Product } from '@/api/interface/plate.interface'
+import { useCartStore } from '@/stores/cartStore'
 
-const plates = ref<Plate[]>([])
+const plates = ref<Product[]>([])
+const cartStore = useCartStore()
+
+function addToCart(product: Product) {
+  cartStore.addItem(product)
+}
 
 onMounted(async () => {
-  const data = await getPlates()
-  plates.value = data
+  plates.value = await getPlates()
 })
 </script>
 
 <template>
-  <section class="container mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold text-center mb-6">Nuestro Menú</h2>
-
-    <div class="grid auto-cols-1 gap-4 xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
-      <div v-for="plate in plates" :key="plate.id">
-        <ProductCard
-          :title="plate.name"
-          :price="plate.price"
-          :description="plate.description"
-          :img="plate.img"
-        />
-      </div>
+  <section>
+    <h2 class="text-3xl font-semibold text-center mb-6 mt-8">
+      Nuestro Menú
+    </h2>
+    <div class="grid grid-cols-3 gap-4">
+      <ProductCard
+        v-for="plate in plates"
+        :key="plate._id"
+        :product="plate"
+        @add-to-cart="addToCart"
+      />
     </div>
   </section>
 </template>
-
-<style scoped></style>

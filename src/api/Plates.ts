@@ -1,6 +1,10 @@
-import data from '@/api/data/plates.json'
-import type { Plate } from '@/api/interface/plate.interface.ts'
+import type { Product } from './interface/plate.interface'
 
-export const getPlates = async (): Promise<Plate[]> => {
-  return await data.data
+export const getPlates = async (): Promise<Product[]> => {
+  const response = await fetch('/src/api/data/plates.json')
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`)
+  }
+  const json = await response.json()
+  return json.data as Product[]
 }

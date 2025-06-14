@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import Navbar from '@/components/ui/Navbar.vue'
+import AppNavbar from '@/components/ui/AppNavbar.vue'
 import Footer from '@/components/ui/Footer.vue'
 import AboutUs from '@/components/AboutUs.vue'
 </script>
 
 <template>
-  <Navbar title="Sobre Nosotros" />
+  <AppNavbar title="Sobre Nosotros" />
   <main>
     <AboutUs />
   </main>

@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import ProductCard from '@/components/ui/ProductCard.vue'
-import type { Plate } from '@/api/interface/plate.interface.ts'
-import { getPlates } from '@/api/Plates.ts'
+import type { Product } from '@/api/interface/plate.interface.ts'
 import { onMounted, ref } from 'vue'
+import { getProducts, url } from '@/api/Product.ts'
 
-const plates = ref<Plate[]>([])
+const products = ref<Product[]>([])
 
 onMounted(async () => {
-  const data = await getPlates()
-  plates.value = data
+  const data = await  getProducts()
+  products.value = data.data
 })
 </script>
 
@@ -17,12 +17,12 @@ onMounted(async () => {
     <h2 class="text-3xl font-bold text-center mb-6">Nuestro Menú</h2>
 
     <div class="grid auto-cols-1 gap-4 xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
-      <div v-for="plate in plates" :key="plate.id">
+      <div v-for="product in products" :key="product._id">
         <ProductCard
-          :title="plate.name"
-          :price="plate.price"
-          :description="plate.description"
-          :img="plate.img"
+          :title="product.name"
+          :price="product.price"
+          :description="product.description"
+          :image="url + product.image"
         />
       </div>
     </div>

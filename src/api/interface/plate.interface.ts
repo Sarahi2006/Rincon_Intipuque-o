@@ -1,7 +1,7 @@
-export interface Plate {
-  id: number
-  name: string
-  description: string
-  img: string
-  price: number
+export interface Product {
+  _id?: string;
+  name: string;
+  price: number;
+  description: string;
+  image: string;
 }

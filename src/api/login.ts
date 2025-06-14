@@ -26,3 +26,25 @@ export async function login(email: string, password: string) {
   }
 }
 
+
+export async function profile(){
+  try {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/profile`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    if (!response.ok) {
+      const error = await response.json();
+      console.error('Error de login:', error);
+      throw new Error(error.message || 'Login fallido');
+    }
+    const data = await response.json();
+    return data;
+  }catch (error) {
+    throw error;
+  }
+}

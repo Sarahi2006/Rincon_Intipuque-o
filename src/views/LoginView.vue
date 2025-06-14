@@ -3,7 +3,6 @@ import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import Footer from '@/components/ui/Footer.vue'
 import { login } from '@/api/login.ts'
-import { useCartStore } from '@/stores/cartStore'
 
 const router = useRouter()
 
@@ -48,23 +47,15 @@ const handleSubmit = async () => {
     try {
       const response = await login(formData.value.email, formData.value.password)
 
+      console.log(response)
+
       if (response.ok) {
-        const userId = response.data.data._id
-
-        // 1. Guardar userId en localStorage
-        localStorage.setItem('userId', userId)
-
-        // 2. Configurar el carrito con ese userId
-        const cartStore = useCartStore()
-        cartStore.setUserId(userId)
-        cartStore.loadFromLocalStorage()
-
-
         router.push('/')
       } else {
         errors.value.password = 'La contraseña no cumple con los requisitos de seguridad'
       }
     } catch (error) {
+
       console.log(error)
       errors.value.password = 'Credenciales incorrectas. Por favor, intente nuevamente.'
     }

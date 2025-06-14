@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { defineProps, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-import { useCartStore } from '@/stores/cartStore'
+import { defineProps } from 'vue'
 import LinkNav from '@/components/ui/LinkNav.vue'
+import { RouterLink, useRouter } from 'vue-router'
 
 const props = defineProps({
   title: {
@@ -12,11 +11,6 @@ const props = defineProps({
 })
 
 const router = useRouter()
-const cartStore = useCartStore()
-
-onMounted(() => {
-  cartStore.loadFromLocalStorage()
-})
 
 const logout = () => {
   localStorage.removeItem('isAuthenticated')
@@ -30,7 +24,7 @@ const logout = () => {
       <!-- Logo y Título -->
       <div class="flex items-center">
         <img
-          src="/img/logo.png"
+          src="@/assets/img/logo.png"
           alt="Logo del Restaurante Rincón Intipuqueño"
           class="w-20 h-20 object-cover rounded-full"
         />
@@ -39,16 +33,14 @@ const logout = () => {
         </h1>
       </div>
 
-      <!-- Navegación -->
+      <!-- Navegación alineada -->
       <nav class="flex items-center space-x-4 hidden sm:flex">
-        <LinkNav text="Inicio" link="/" />
-        <LinkNav text="Eventos" link="/event" />
-        <LinkNav text="Sobre Nosotros" link="/about" />
-        <LinkNav text="Servicios" link="/services" />
-        <LinkNav text="Carrito" link="/cart" :icon="true" :count="cartStore.totalQuantity" />
+        <link-nav text="Inicio" link="/" />
+        <link-nav text="Eventos" link="/event" />
+        <link-nav text="Sobre Nosotros" link="/about" />
+        <link-nav text="Servicios" link="/services" />
 
-
-        <!-- Botón de logout -->
+        <!-- Botón de logout con icono SVG -->
         <button
           @click="logout"
           class="p-2 rounded-full hover:bg-gray-700 transition flex items-center justify-center"
@@ -69,9 +61,24 @@ const logout = () => {
             />
           </svg>
         </button>
+
+        <!-- Alternativa: Si prefieres usar el icono de usuario existente -->
+        <!--
+        <button
+          @click="logout"
+          class="p-1 rounded-full hover:bg-gray-700 transition flex items-center justify-center"
+          title="Cerrar sesión"
+        >
+          <img
+            src="@/assets/img/user-icon.png"
+            alt="Cerrar sesión"
+            class="w-10 h-10 object-cover"
+          >
+        </button>
+        -->
       </nav>
 
-      <!-- Menú móvil -->
+      <!-- Menú móvil (opcional) -->
       <div class="sm:hidden">
         <button class="text-white focus:outline-none">
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
